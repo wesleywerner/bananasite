@@ -28,7 +28,9 @@ BananaSite uses the PHP Markdown script Copyright (c) 2004-2013 Michel Fortin, a
 
 # Adding posts
 
-Simply write plain text markdown files into one of your post subdirectories. The files should have a .md file extension. Posts are ordered by however the filesystem returns them, thus naming your files by date would be the best way to ensure they display in the right order.
+Simply write plain text markdown files into one of your post subdirectories. The files should have a .md file extension. 
+
+Posts are ordered by name descending, thus naming your files by date would be the best way to ensure they display in reverse chronological right order. Latest posts first.
 
 The default site is configured with an example layout for you to enjoy.
 
