@@ -5,11 +5,7 @@ BananaSite is a simple php script that serves rendered markdown files. It suppor
 
 # Usage
 
-BananaSite uses this php markdown script:
-
-    PHP Markdown  
-    Copyright (c) 2004-2013 Michel Fortin  
-    [http://michelf.ca/projects/php-markdown/](http://michelf.ca/projects/php-markdown/)
+BananaSite uses the PHP Markdown script Copyright (c) 2004-2013 Michel Fortin, available at [http://michelf.ca/projects/php-markdown/](http://michelf.ca/projects/php-markdown/)
 
 1. Clone or download this project to your local machine.
 1. Download the php markdown script mentioned above into your local site directory.
