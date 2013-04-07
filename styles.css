@@ -1,0 +1,19 @@
+body {
+  font-family: tahoma, verdana, arial;
+}
+#post {
+  border: 1px solid #000000;
+  padding: 3px 30px 6px 20px;
+  background-repeat: repeat;
+  font-family: tahoma, verdana, arial;
+}
+#box {
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+#header {
+}
+#footer {
+}
