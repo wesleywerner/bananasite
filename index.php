@@ -36,17 +36,31 @@ You should receive a copy of the GNU General Public License along with this prog
 print('<div id="header">');
 print(Markdown(file_get_contents("header.md")));
 print('</div>');
-$page = htmlspecialchars(stripslashes($_GET["page"]));
-$page = str_replace("..", "", $page);
+// the page we are on determines where to look for posts
+$page = htmlspecialchars(str_replace("/", "", $_GET["page"]));
+// default to the news
 $page = ($page == "" ? "posts.news" : $page);
-print("<h1>" . $page . "</h1>");
-$file_list = scandir($page, 1);
+// only print a single post
+$post = htmlspecialchars(str_replace("/", "", $_GET["post"]));
+if ($post != ""){
+        // use the given post file name
+        $file_list = array(0 => $post);
+    } else {
+        // get all the posts in the current page
+        $file_list = scandir($page, 1);
+    }
+// render posts in file_list
 foreach ($file_list as $afile) {
-    $afile = $page . "/" . $afile;
-    if (pathinfo($afile, PATHINFO_EXTENSION) == "md") {
-        print('<p><div id="post">');
-        print(Markdown(file_get_contents($afile)));
-        print('</div></p>');
+    $afilename = $page . "/" . $afile;
+    if (file_exists($afilename)) {
+        if (pathinfo($afilename, PATHINFO_EXTENSION) == "md") {
+            $afilecontents = Markdown(file_get_contents($afilename));
+            // replace special tokens in the file
+            $afilecontents = str_replace('%PERMALINK%', '?page=' . $page . '&post=' . $afile, $afilecontents);
+            print('<p><div id="post">' . $afilecontents . '</div></p>');
+        }
+    } else {
+        print('<p>That post does not exist, or has been removed.</p>');
     }
 }
 print('<div id="footer">');
