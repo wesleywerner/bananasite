@@ -1,0 +1,6 @@
+
+* given the "ord=asc" option reverse the file_list
+    array array_reverse ( array $array [, bool $preserve_keys = false ] )
+    Takes an input array and returns a new array with the order of the elements reversed.
+
+* store list of files in a string and print it out to a "toc" element.
