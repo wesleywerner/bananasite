@@ -1,0 +1,8 @@
+# 2013-05
+
+* support the %more% token
+* all tokens are now case incensitive
+
+# 2013-04
+
+* support the %permalink% token

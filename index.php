@@ -54,9 +54,28 @@ foreach ($file_list as $afile) {
     $afilename = $page . "/" . $afile;
     if (file_exists($afilename)) {
         if (pathinfo($afilename, PATHINFO_EXTENSION) == "md") {
-            $afilecontents = Markdown(file_get_contents($afilename));
-            // replace special tokens in the file
-            $afilecontents = str_replace('%PERMALINK%', '?page=' . $page . '&post=' . $afile, $afilecontents);
+            // grab the post contents
+            $afilecontents = file_get_contents($afilename);
+            // replace the more token
+            $morepos = stripos($afilecontents, '%more%');
+            // $morepos is either false (no matches) or a number.
+            if ($post == "") {
+                if (!($morepos === false)) {
+                    // cut everything before %more%
+                    $afilecontents = substr($afilecontents, 0, $morepos);
+                    // add a permalink that reads 'more'
+                    $afilecontents .= '[read more](%permalink%)';
+                    }
+            }
+            else {
+                // if viewing a single post, remove %more%
+                $afilecontents = str_ireplace('%more%', '', $afilecontents);
+            }
+            // replace permalink tokens
+            $permapath = '?page=' . $page . '&post=' . $afile;
+            $afilecontents = str_ireplace('%permalink%', $permapath, $afilecontents);
+            // Markdownify
+            $afilecontents = Markdown($afilecontents);
             print('<p><div id="post">' . $afilecontents . '</div></p>');
         }
     } else {
