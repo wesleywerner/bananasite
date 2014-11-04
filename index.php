@@ -1,6 +1,6 @@
 <!--
- ____                                ____  _ _       
-| __ )  __ _ _ __   __ _ _ __   __ _/ ___|(_) |_ ___ 
+ ____                                ____  _ _
+| __ )  __ _ _ __   __ _ _ __   __ _/ ___|(_) |_ ___
 |  _ \ / _` | '_ \ / _` | '_ \ / _` \___ \| | __/ _ \
 | |_) | (_| | | | | (_| | | | | (_| |___) | | ||  __/
 |____/ \__,_|_| |_|\__,_|_| |_|\__,_|____/|_|\__\___|
@@ -32,16 +32,14 @@ You should receive a copy of the GNU General Public License along with this prog
 <body>
 <?php include_once "markdown.php"; ?>
 <div id="box">
-<?php 
+<?php
 print('<div id="header">');
 print(Markdown(file_get_contents("header.md")));
 print('</div>');
 // the page we are on determines where to look for posts
-$page = htmlspecialchars(str_replace("/", "", $_GET["page"]));
-// default to the news
-$page = ($page == "" ? "posts.news" : $page);
+$page = empty($_GET["page"]) ? "posts.news" : htmlspecialchars(str_replace("/", "", $_GET["page"]));
 // only print a single post
-$post = htmlspecialchars(str_replace("/", "", $_GET["post"]));
+$post = empty($_GET["post"]) ? "" : htmlspecialchars(str_replace("/", "", $_GET["post"]));
 if ($post != ""){
         // use the given post file name
         $file_list = array(0 => $post);
